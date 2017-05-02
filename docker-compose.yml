@@ -3,7 +3,14 @@ version: '2'
 services:
   shield:
     image: starkandwayne/shield
+    ports:
+    - 443:443
+    - 80:80
     command: "start starkandwayne/shield --peer database --bind database:postgresql.shield"
+    environment:
+      HAB_SHIELD: |
+        basic_user='admin'
+        basic_password='admin'
     links:
     - database
   agent:
@@ -13,6 +20,14 @@ services:
         install_pg_tools=true
         shield_endpoint="https://shield"
         provisioning_key="autoprovision"
+        # [[stores]]
+        # name='shield-demo'
+        # plugin='s3'
+        # [stores.config]
+        # access_key_id='${AWS_ACCESS_KEY}'
+        # secret_access_key='${AWS_SECRET_KEY}'
+        # bucket='${AWS_BUCKET}'
+        # prefix='shield-demo'
     command: "start starkandwayne/shield-agent --peer shield"
     links:
     - shield
