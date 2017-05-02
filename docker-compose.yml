@@ -18,7 +18,6 @@ services:
       HAB_SHIELD_AGENT: |
         install_pg_tools=true
         shield_endpoint="https://shield"
-        provisioning_key="autoprovision"
         # [[stores]]
         # name='shield-demo'
         # plugin='s3'
