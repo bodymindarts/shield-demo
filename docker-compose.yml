@@ -5,7 +5,6 @@ services:
     image: starkandwayne/shield
     ports:
     - 443:443
-    - 80:80
     command: "start starkandwayne/shield --peer database --bind database:postgresql.shield"
     environment:
       HAB_SHIELD: |
